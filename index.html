@@ -1,6 +1,28 @@
 <!DOCTYPE html>
 <html class="no-js">
     <head>
+
+      <meta name="description" content="">
+
+    	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=false;"/>
+    	<meta name="apple-mobile-web-app-capable" content="yes" />
+    	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="start_location_here">
+    	<!-- For first-generation iPad: -->
+    	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="start_location_hereg">
+    	<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    	<link rel="apple-touch-icon-precomposed" href="start_location_here">
+    	<link rel="apple-touch-startup-image" href="start_location_here" />
+    	<!-- Main Stylesheet -->
+    	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />
+
+    	<!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+    	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+
+    	<!-- DB Creation Scripts -->
+    	<script src="global.js"></script>
+
         <meta charset="utf-8">
         <title></title>
         <meta name="description" content="">
@@ -48,8 +70,56 @@
     </head>
     <body>
 
+    		<div id="activity" data-role="page">
+    			<div data-role="header">
+    			<h1>Your Activity</h1>
+    			<div data-role="navbar" data-iconpos="bottom">
+    				<ul>
+    					<li><a data-icon="star" class="ui-btn-active" href="#activity">Activity</a></li>
+    					<li><a data-icon="grid" href="#manage">Manage</a></li>
+    					<li><a data-icon="info" href="#find">Find</a></li>
+    					<li><a data-icon="gear" href="#settings">Settings</a></li>
+    					<li><a data-icon="search" href="#search">Search</a></li>
+    				</ul>
+    			</div><!-- /navbar -->
+    			</div><!-- /footer -->
+
+    			<div id="my-activity" data-role="content">
+    				<ul data=role="list-view" id="my-activity-list"></ul>
+    			</div><!-- /content -->
+
+    			<div data-role="footer">
+    				<h4>Page Footer</h4>
+    			</div><!-- /footer -->
+    		</div>
+
+    		<div id="manage" data-role="page">
+    			<div data-role="header">
+    				<h1>Manage</h1>
+    				<div data-role="navbar" data-iconpos="bottom">
+    					<ul>
+    						<li><a data-icon="star" href="#activity">Activity</a></li>
+    						<li><a data-icon="grid" class="ui-btn-active" href="#manage">Manage</a></li>
+    						<li><a data-icon="info" href="#find">Find</a></li>
+    						<li><a data-icon="gear" href="#settings">Settings</a></li>
+    						<li><a data-icon="search" href="#search">Search</a></li>
+    					</ul>
+    				</div><!-- /navbar -->
+    			</div><!-- /footer -->
+
+    			<div data-role="footer">
+    				<h4>Page Footer</h4>
+    			</div><!-- /footer -->
+    		</div>
+
+
+
+
+    </div> <!--! end of #container -->
+
+
         <!-- Add your site or application content here -->
-<h1>hellow</h1>
+
         <script src="js/vendor/jquery-2.1.0.min.js"></script>
         <script src="js/helper.js"></script>
         <script src="js/main.js"></script>
