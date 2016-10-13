@@ -27,13 +27,12 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script type="text/javascript">
-
         function fnGetCurrentPosition() {
             if (navigator.geolocation)
             {
                 $("#latlng").html("");
                 $("#errormsg").html("");
-                navigator.geolocation.getCurrentPosition (function (pos)
+                navigator.geolocation.getCurrentPosition (function (pos))
                 {
                     lat = pos.coords.latitude;
                     lng = pos.coords.longitude;
@@ -98,7 +97,7 @@
     <div class="container">
         <div id="errormsg" ></div>
         <div id="latlng"></div>
-        <input type="button" value="GetCurrentPosition " onclick="fnGetCurrentPosition();" />
+        <input type="button" value="GetCurrentPosition " onclick="Javascript:fnGetCurrentPosition();" />
         <div id="map" style="width:760px;height:400px;margin-top:20px;"></div>
    </div>
 
