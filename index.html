@@ -14,30 +14,46 @@
     img {max-width: 100%;height:auto;}
     </style>
 
+
+
     <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
     <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+  #map-container { height: 300px }
+</style>
   </head>
   <body background-color: #fff;>
+
+    <!--알리고 싶은-->
     <div class="container">
-      <div class="col-md-9">
-      <h1>Hello, world!</h1>
+      <h1>알리고 싶은</h1>
       <a href="up.html">
       <img src="img/up.png" alt="up"  >
       </a>
+    </div>
+    <!--현재 나는 어디?-->
+    <div class="container">
+        <div id="errormsg" ></div>
+        <div id="latlng"></div>
+        <input type="button" value="GetCurrentPosition " onclick="Javascript:fnGetCurrentPosition();" />
+        <div id="map" style="width:760px;height:400px;margin-top:20px;"></div>
+   </div>
+
+
+    <!--알고 싶은-->
+    <div class="container">
+      <h1>알고 싶은</h1>
       <a href="down.html">
       <img src="img/down.png" alt="down" >
       </a>
-      </div>
+
 
 
 <!--서치영역 -->
-     <div class="col-md-3">
-
-
         <form action="/search" method="get">
             <div class="form-group">
                 <label for="q">Search</label>
