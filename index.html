@@ -32,16 +32,15 @@
             {
                 $("#latlng").html("");
                 $("#errormsg").html("");
-                navigator.geolocation.getCurrentPosition (function (pos))
+                navigator.geolocation.getCurrentPosition (function (pos)
                 {
                     lat = pos.coords.latitude;
                     lng = pos.coords.longitude;
 
-                    $("#latlng").html("latitude : " + lat + "
-     longitude : "+ lng);
+                    $("#latlng").html("latitude : " + lat + "longitude : "+ lng);
 
                     var mapOptions = {
-                        zoom: 16,
+                        zoom: 10,
                         mapTypeId: google.maps.MapTypeId.ROADMAP,
                         center: new google.maps.LatLng(lat,lng)
                     };
@@ -95,12 +94,11 @@
     </div>
     <!--현재 나는 어디?-->
     <div class="container">
-        <div id="errormsg" ></div>
-        <div id="latlng"></div>
-        <input type="button" value="GetCurrentPosition " onclick="Javascript:fnGetCurrentPosition();" />
-        <div id="map" style="width:760px;height:400px;margin-top:20px;"></div>
-   </div>
-
+    <div id="errormsg"></div>
+    <div id="latlng"></div>
+    <input type="button" value="GetCurrentPosition " onclick="Javascript:fnGetCurrentPosition();" />
+    <div id="map" style="width:760px;height:400px;margin-top:20px;"></div>
+    </div>
 
     <!--알고 싶은-->
     <div class="container">
