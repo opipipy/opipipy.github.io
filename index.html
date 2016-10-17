@@ -14,7 +14,12 @@
     img {max-width: 100%;height:auto;}
     </style>
     <!-- google map-->
-  
+    <style type="text/css">
+      html, body { height: 100%; margin: 0; padding: 0; }
+      #map { height: 40%; }
+      #up { height: 30%; }
+      #down { height: 30%; }
+    </style>
     <!--div style 나누기 가로:세로 1:2-->
 
 
@@ -88,7 +93,7 @@
   <body background-color: #fff;>
 
     <!--알리고 싶은-->
-    <div class="container">
+    <div id="up" class="container">
       <h1>알리고 싶은</h1>
       <a href="up.html">
       <img src="img/up.png" alt="up"  >
@@ -120,7 +125,7 @@ function initMap() {
 
 
     <!--알고 싶은-->
-    <div class="container">
+    <div id="down" class="container">
       <h1>알고 싶은</h1>
       <a href="down.html">
       <img src="img/down.png" alt="down" >
