@@ -14,7 +14,10 @@
     img {max-width: 100%;height:auto;}
     </style>
     <!-- google map-->
-
+    <style type="text/css">
+      html, body { height: 100%; margin: 0; padding: 0; }
+      #map { height: 100%; }
+    </style>
     <!--div style 나누기 가로:세로 1:2-->
 
 
@@ -94,6 +97,10 @@
       <img src="img/up.png" alt="up"  >
       </a>
     </div>
+
+
+
+
     <!--현재 나는 어디?-->
     <div id="map" class="container"></div>
     <script type="text/javascript">
@@ -111,6 +118,10 @@ function initMap() {
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4pduEzxYf9MTm1yjGhlulECFM5KftqlA&callback=initMap">
     </script>
+
+
+
+
     <!--알고 싶은-->
     <div class="container">
       <h1>알고 싶은</h1>
