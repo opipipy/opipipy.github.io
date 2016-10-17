@@ -13,9 +13,9 @@
     <!-- google map-->
     <style type="text/css">
       html, body { height: 100%; margin: 0; padding: 0; }
-      #map { height: 40%; }
+      #map { height: 30%; }
       #up { height: 30%; }
-      #down { height: 30%; }
+      #down { height: 40%; }
     </style>
     <!--div style 나누기 가로:세로 1:2-->
 
@@ -27,64 +27,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!--지도를 가져오고 현재위치를 가르키는...-->
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-    <script type="text/javascript">
-        function fnGetCurrentPosition() {
-            if (navigator.geolocation)
-            {
-                $("#latlng").html("");
-                $("#errormsg").html("");
-                navigator.geolocation.getCurrentPosition (function (pos)
-                {
-                    lat = pos.coords.latitude;
-                    lng = pos.coords.longitude;
 
-                    $("#latlng").html("latitude : " + lat + "longitude : "+ lng);
-
-                    var mapOptions = {
-                        zoom: 10,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP,
-                        center: new google.maps.LatLng(lat,lng)
-                    };
-
-                    map = new google.maps.Map(document.getElementById('map'),mapOptions);
-
-                    var myIcon = new google.maps.MarkerImage("http://google-maps-icons.googlecode.com/files/restaurant.png", null, null, null, new google.maps.Size(17,17));
-                    var marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(lat,lng),
-                        map: map,
-                        draggable: false,
-                        icon: myIcon
-                    });
-                    markers.push(marker);
-                },function(error)
-                {
-                    switch(error.code)
-                    {
-                        case 1:
-                            $("#errormsg").html("User denied the request for Geolocation.");
-                            break;
-                        case 2:
-                            $("#errormsg").html("Location information is unavailable.");
-                            break;
-                        case 3:
-                            $("#errormsg").html("The request to get user location timed out.");
-                            break;
-                        case 0:
-                            $("#errormsg").html("An unknown error occurred.");
-                            break;
-                    }
-                });
-            }
-            else
-            {
-                $("#errormsg").html("Geolocation is not supported by this browser.");
-            }
-        }
-
-    </script>
 
   </head>
   <body background-color: #fff;>
@@ -106,7 +49,7 @@
 // locate you.
     function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
-      
+
       zoom: 16
     });
     var infoWindow = new google.maps.InfoWindow({map: map});
@@ -120,7 +63,7 @@
         };
 
         infoWindow.setPosition(pos);
-        infoWindow.setContent('Location found.');
+        infoWindow.setContent('현재위치');
         map.setCenter(pos);
       }, function() {
         handleLocationError(true, infoWindow, map.getCenter());
