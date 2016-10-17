@@ -13,7 +13,11 @@
     <style>
     img {max-width: 100%;height:auto;}
     </style>
-
+    <!-- google map-->
+    <style type="text/css">
+      html, body { height: 100%; margin: 0; padding: 0; }
+      #map { height: 100%; }
+    </style>
 
 
     <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
@@ -93,13 +97,22 @@
       </a>
     </div>
     <!--현재 나는 어디?-->
+    <div id="map" style="height:500px"></div>
+    <script type="text/javascript">
 
-    <div id="errormsg"></div>
-    <div id="latlng"></div>
-    <input type="button" value="GetCurrentPosition " onclick="Javascript:fnGetCurrentPosition();" />
-    <div id="map" style="width:760px;height:400px;margin-top:20px;"></div>
-    
 
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 8
+  });
+}
+
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4pduEzxYf9MTm1yjGhlulECFM5KftqlA&callback=initMap">
+    </script>
     <!--알고 싶은-->
     <div class="container">
       <h1>알고 싶은</h1>
