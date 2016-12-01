@@ -1,316 +1,82 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-  <title>Index</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style media="screen">
-      html,body{
-      margin:0px;
-      font-size: 3vw;
-      background-color: black;
-    }
-    .adstation{
-      width: 320px;
-      border: 1px solid #ccc;
-      height: 500px;
-      overflow: auto;
-      position: relative;
-    }
-    #map {
-      height: 300px;background-color: tomato;
-    }
-    .search{
-      width: 100%;
-      height: 60px;
-      background-color: white;
-      z-index: 1;
-    }
-    #input{text-align: center; margin: auto;border: none;display: block;
-      margin: 0 auto;height: 100%;focus: none;
-    }
-    .fix-search {
-      position: fixed;
-      height: 60px;
-      top: 0px;
-    }
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>maptest1</title>
+    <style>
+    /* Always set the map height explicitly to define the size of the div
+      * element that contains the map. */
+     #map {
+       height: 50%;
+     }
+     /* Optional: Makes the sample page fill the window. */
+     html, body {
+       height: 100%;
+       margin: 0;
+       padding: 0;
+     }
+   </style>
 
+   <script>
+   function initMap() {
+   map = new google.maps.Map(document.getElementById('map'), {
+   zoom: 14
+  });
+  map.addListener('click', function(e) {
+  var pos=e.latLng;
+  basic(pos);
+  });
 
-    .list{
-      background-color: black;
-      height: inherit;
-    }
-    @media (min-width: 768px) {
-      .list{
-        padding-left: 20%; padding-right: 20%;
-      }
-    }
+};
+   // Try HTML5 geolocation.
+   if (navigator.geolocation) {
+     navigator.geolocation.getCurrentPosition(function(position) {
+       var pos = {
+         lat: position.coords.latitude,
+         lng: position.coords.longitude
+     };
+     basic(pos);
+    });
 
-    .wrap{
-      padding: 0px;
-      padding-bottom: 10px;
-      padding-top: 10px;
-      border-bottom: 1px solid tomato;
-    }
-    .thumnail{
-      position: relative;
-      padding-top: 75%;
-      overflow: hidden;
-      border: 1px solid gray;
-    }
-    .thumnail .centered{
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      -webkit-transform: translate(50%,50%);
-      -ms-transform: translate(50%,50%);
-      transform: translate(50%,50%);
-    }
-    .thumnail .centered img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      max-width: 100%;
-      height: auto;
-      -webkit-transform: translate(-50%,-50%);
-      -ms-transform: translate(-50%,-50%);
-      transform: translate(-50%,-50%);
-    }
-    .explain{
-      width: 100%;
-      height: 200px;
-    }
+   } else {
+     // Browser doesn't support Geolocation
 
+ };
 
-  </style>
-  <script>
-    // Note: This example requires that you consent to location sharing when
-    // prompted by your browser. If you see the error "The Geolocation service
-    // failed.", it means you probably did not give permission for the browser to
-    // locate you.
-        function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 16
+function basic(pos){
+
+      map.setCenter(pos);
+
+      var marker = new google.maps.Marker({
+        position:pos,
+        draggable:true,
         });
-        var infoWindow = new google.maps.InfoWindow({map: map});
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('현재위치');
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-      }
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-      }
+      marker.setMap(map);
+      var myCity = new google.maps.Circle({
+         center:pos,
+         radius:1000,
+         strokeColor:"rgb(170, 191, 255)",
+         strokeOpacity:0.6,
+         strokeWeight:1,
+         fillColor:"rgb(170, 191, 255)",
+         fillOpacity:0.3
+         });
+       myCity.setMap(map);
+       var infowindow = new google.maps.InfoWindow({
+       content:"Hello World!"
+       });
+       infowindow.open(map,marker);
+}
 
-          </script>
-        <script async defer
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4pduEzxYf9MTm1yjGhlulECFM5KftqlA&callback=initMap">
-        </script>
-
-</head>
-<body>
-<div id="adstation">
-
-
-      <div id="map">
-      </div>
-
-      <div class="search" id="sear">
-          <input type="text" id="input" value="" placeholder="Search">
-      </div>
-
-
-      <div class="list">
-        <div class="wrap" >
-          <div class="container-fluid" style="padding:0px;">
-            <div class="col-sm-6" style="padding:0px;">
-                <div class="thumnail">
-                  <div class="centered">
-                    <img src="imges\물방울.jpg" data-toggle="modal" href="#modal" data-whatever="imges\물방울.jpg">
-                  </div>
-                </div>
-            </div>
-            <div class="col-sm-6" style="padding:0px;">
-              <div class="explain">
-                추천 10건 입력시간
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="wrap" >
-          <div class="container-fluid" style="padding:0px;">
-            <div class="col-sm-6" style="padding:0px;">
-              <div class="thumnail">
-                <div class="centered">
-                  <img src="imges\가을.jpg" alt="Norway" data-toggle="modal" href="#modal" data-whatever="imges\가을.jpg">
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6" style="padding:0px;">
-              <div class="explain">
-                추천 10건 입력시간
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="wrap" >
-          <div class="container-fluid" style="padding:0px;">
-            <div class="col-sm-6" style="padding:0px;">
-              <div class="thumnail">
-                <div class="centered">
-                  <img src="imges\코끼리얼굴주름.jpg" alt="Norway" data-toggle="modal" href="#modal" data-whatever="imges\코끼리얼굴주름.jpg">
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6" style="padding:0px;">
-              <div class="explain">
-                추천 10건 입력시간
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="wrap" >
-          <div class="container-fluid" style="padding:0px;">
-            <div class="col-sm-6" style="padding:0px;">
-              <div class="thumnail">
-                <div class="centered">
-                  <img src="imges\fat.jpg" alt="Norway" data-toggle="modal" href="#modal" data-whatever="imges\fat.jpg">
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6" style="padding:0px;">
-              <div class="explain">
-                추천 10건 입력시간
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="wrap" >
-          <div class="container-fluid" style="padding:0px;">
-            <div class="col-sm-6" style="padding:0px;">
-              <div class="thumnail">
-                <div class="centered">
-                  <img src="imges\청진기.jpg" alt="Norway" data-toggle="modal" href="#modal" data-whatever="imges\청진기.jpg">
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6" style="padding:0px;">
-              <div class="explain">
-                추천 10건 입력시간
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="wrap" >
-          <div class="container-fluid" style="padding:0px;">
-            <div class="col-sm-6" style="padding:0px;">
-              <div class="thumnail">
-                <div class="centered">
-                  <img data-toggle="modal" href="#modal" src="imges\bg1.jpg"  data-whatever="imges\bg1.jpg">
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6" style="padding:0px;">
-              <div class="explain">
-                추천 10건 입력시간
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="wrap" >
-          <div class="container-fluid" style="padding:0px;">
-            <div class="col-sm-6" style="padding:0px;">
-              <div class="thumnail">
-                <div class="centered">
-                  <img data-toggle="modal" href="#modal" src="imges\img(2).jpeg"  data-whatever="imges\img(2).jpeg">
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6" style="padding:0px;">
-              <div class="explain">
-                추천 10건 입력시간
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="exampleModalLabel">New message</h4>
-               <div class="row">
-              <div  id="img"></div>
-      </div>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label for="recipient-name" class="control-label">Recipient:</label>
-                  <input type="text" class="form-control" id="recipient-name">
-                </div>
-                <div class="form-group">
-                  <label for="message-text" class="control-label">Message:</label>
-                  <textarea class="form-control" id="message-text"></textarea>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Send message</button>
-            </div>
-          </div>
-        </div>
-      </div>
-</div>
-      <script>
-        $('#modal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var recipient = button.data('whatever') // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        var src = button.data('whatever')
-        var modal = $(this)
-        modal.find('.modal-title').text('New message to ' + src)
-        modal.find('.modal-body input').val(recipient)
-        modal.find('#img').html("<img  class='col-xs-12' src="+src+">");
-      });
-      </script>
-      <script>
-        $(document).ready(function(){
-          var sea = $('#sear')
-     	   $(window).bind('scroll', function() {
-     			 if ($(window).scrollTop() > 300) {
-     				 sea.addClass('fix-search');
-     			 }
-     			 else {
-     				 sea.removeClass('fix-search');
-     			 }
-     		});
-     	});
-      </script>
-
-</body>
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4pduEzxYf9MTm1yjGhlulECFM5KftqlA&callback=initMap">
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <button onclick="myFunction()">Try it</button>
+    <p id="demo">asdfasdf</p>
+  </body>
 </html>
